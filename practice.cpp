@@ -1,14 +1,21 @@
 #include<iostream>
 #include<vector>
+#include<stack>
+#include<map>
+#include<set>
 using namespace std;
 int main(){
-    vector<vector<int>>mat={
-    {1,2,3,4,10},
-    {5,6,7,8,10},
-    {9,10,11,12,10},
-    {13,14,15,16,10},
-    {10,10,10,10,10}
-    };
-   
-    return 0;
+ set<int>s;
+ s.insert(1);
+ s.insert(2);
+
+ 
+ cout<<*(s.lower_bound(1));
+ cout<<endl;
+
+ for(int val:s){
+    cout<<val<<" ";
+ }
+ cout<<endl;
+   return 0;
 }
