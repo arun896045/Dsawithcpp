@@ -8,32 +8,30 @@
 #include<unordered_set>
 #include<algorithm>
 using namespace std;
+void getallsubject(vector<int>&vec,vector<int>&ans,vector<vector<int>>&subset,int i,int n){
+  if(i==vec.size()){
+    subset.push_back(ans);
+    return;
+  }
+     ans.push_back(i);
+     getallsubject(vec,ans,subset,i+1,n);
+     ans.pop_back();
+     int idx=i+1;
+     while(idx<vec.size()&&vec[i]==vec[i+1]) i++;
+     getallsubject(vec,ans,subset,i+1,n);
+     
+}
 int main(){
-//find duplicate and missing value in the given array;
-vector<vector<int>>vec={{1,2,3},{4,5,6},{7,9,9}}; 
-unordered_set<int>s;
-int n=vec.size();
-int a,b;
-bool flag=true;
-int actualsum=0,axpected=0;
-
-for(int i=0;i<n;i++){
-   for(int j=0;j<n;j++){
-      actualsum+=vec[i][j];
-      if(s.find(vec[i][j])!=s.end()){
-          a=vec[i][j];
-          flag=false;
-      }
-      s.insert(vec[i][j]);
-   }
-}
-if(flag){
-   cout<<"There is no any  duplicate value is occured"<<endl;
-}
-
-axpected=(n*n)*((n*n)+1)/2;
-b=axpected+a-actualsum;
-cout<<"missing value:"<<b<<endl;
-cout<<"duplicate value:"<<a<<endl;
- return 0;
+  vector<int>vec={1,2,2};
+  int n=vec.size();
+  vector<int >ans;
+  vector<vector<int>>subset;
+  getallsubject(vec,ans,subset,0,n);
+  for(vector<int>val:subset){
+    for(int i=0;i<val.size();i++){
+      cout<<val[i]<<" ";
+    }
+    cout<<endl;
+  }
+  return 0;
 }
